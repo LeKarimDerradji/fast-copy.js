@@ -48,19 +48,11 @@ const readAndCopyDir = async () => {
         } 
         catch (err) {
         console.error(err);
+        // If there's no direcory
+        // If there's no files in directory
       }
 }
 
-/*
-const main = async () => {
-    try {
-        await writeMultipleFiles()
-        awaitcopyFilesInDir()
-    } catch (error) {
-        
-    }
-}
-*/
 
-readDir()
+readAndCopyDir()
 
