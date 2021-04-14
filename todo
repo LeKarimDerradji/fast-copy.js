@@ -1,0 +1,9 @@
+find directory
+if directory not present : create directory
+
+readDirectory 
+if directory is empty : create files 
+if directory contain files : createCopyOfDirectory 
+Copyfile in another directory
+
+readDirectory again
