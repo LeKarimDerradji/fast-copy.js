@@ -15,6 +15,7 @@ const makeNewDirectory = async (name) => {
     })
 }
 
+  
 
 // Exiting if the answer is N 
 const exiting = () => {
@@ -27,14 +28,16 @@ const exiting = () => {
 
 // Function to copy the retrieved files 
 const copyFileFunc = async (datas, directoryName) => {
-
-    setTimeout(() => {
+    let promises = []
+    console.log('Copying files')
+   await setTimeout(() => {
         for (const data of datas) {
-            fsPromises.writeFile(`./${directoryName}/${data}`, 'utf-8')
-            console.log(`${data} is being copied`)
+            promises.push(fsPromises.writeFile(`./${directoryName}/${data}`, ''))
         }
     }, 2 * 1000);
-   
+    for (const promise in promises) {
+        Promise.all(promise)
+    }
     
 } 
 
@@ -48,11 +51,11 @@ const readAndCopyDir = async () => {
         const files = await fsPromises.readdir('./directory')
 
                 if (files.length > 0) {
-                console.log(`contain ${files.length} files, are you sure you want to copy all of those ?`)
+                console.log(`contain ${files.length} files, are you sure you want to copy all of those ? `)
                 let answer = await readlineSync.question('Would you like to continue? Y or N ').toLocaleLowerCase()
 
                       if (answer === 'y') 
-                      var directoryName = await readlineSync.question('How would you like your directory to be called ?')
+                      var directoryName = await readlineSync.question('How would you like your directory to be called ? ')
                             makeNewDirectory(directoryName)
                             copyFileFunc(files, directoryName)
                  }
